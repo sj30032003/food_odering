@@ -1,4 +1,7 @@
 import React from 'react'
+
+import '../About.css';
+
 import {Link} from 'react-router-dom'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -6,12 +9,30 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import GoogleIcon from '@mui/icons-material/Google';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-
-export default function Footer() {
+import image from '../images/About_Us.png'
+export default function About() {
   return (
-    <div><div className="">
-    <footer className="bg-success text-center text-white">
-    <section className="mb-2">
+    <div>
+        
+    <div class="wrapper ">
+
+        <div class="background-container ">
+            <div class="bg-1"></div>
+            <div class="bg-2"></div>
+    
+        </div>
+        <div class="about-container mt-5">
+            
+            <div class="image-container">
+                <img src={image} alt=""/>
+                
+            </div>
+
+            <div class="text-container">
+                <h1>About us</h1>
+                <h3>Welcome to SST FOOD!</h3>
+                <p>At SST FOOD, we are passionate about connecting food lovers with their favorite meals. We understand the joy that comes from indulging in delicious food, and our mission is to make the process of ordering food online as convenient and enjoyable as possible.</p>
+                <section className="mb-2">
      
      <Link
        className="btn text-white btn-floating m-1"
@@ -65,19 +86,13 @@ export default function Footer() {
        role="button"
        ><GitHubIcon></GitHubIcon></Link>
    </section>
-   
-   <div className="text-center"> 
-   Contact No  +918386999479
- </div>
- <div className="text-center p-3"
-//  style="background-color: rgba(0, 0, 0, 0.2);"
-style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}
-> 
-   © 2023 Copyright Sourabh
-  
- </div>
-    </footer>
-  </div>
-  </div>
+   <Link className="btn bg-success text-black mx-1" to="/">Home</Link>
+            </div>
+            
+        </div>
+    </div>
+    
+    </div>
+
   )
 }

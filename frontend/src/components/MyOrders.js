@@ -12,7 +12,7 @@ if(!localStorage.getItem("authToken")){
 
     const fetchMyOrder = async () => {
         console.log(localStorage.getItem('userEmail'))
-        await fetch("http://localhost:5000/api/myOrderData", {
+        await fetch("https://food-ordering-88am.onrender.com/api/myOrderData", {
             // credentials: 'include',
             // Origin:"http://localhost:3000/login",
             method: 'POST',
@@ -41,7 +41,7 @@ if(!localStorage.getItem("authToken")){
     }, [])
 
     return (
-        <div className='bg-black'>
+        <div className='bg-white'>
             <div>
                 <Navbar />
             </div>
@@ -56,7 +56,7 @@ if(!localStorage.getItem("authToken")){
                                     return (
                                         item.map((arrayData) => {
                                             return (
-                                                <div className='text-white' >
+                                                <div className='text-black' >
                                                     {arrayData.Order_date ? <div className='m-auto mt-5'>
 
                                                         {data = arrayData.Order_date}

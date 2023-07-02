@@ -4,6 +4,7 @@ import {Link,useNavigate} from 'react-router-dom'
 import Cart from '../screens/Cart';
 import Model from '../Modal';
 import { useCart, useDispatchCart } from '../components/ContextReducer';
+import DeliveryDiningOutlinedIcon from '@mui/icons-material/DeliveryDiningOutlined';
 export default function Navbar() {
   let data= useCart();
   const [cartView,setCartView]= useState(false);
@@ -17,7 +18,7 @@ export default function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-success">
   <div className="container-fluid">
-    <Link className="navbar-brand fs-1 fst-italic" to="#">SST FOOD</Link>
+  <Link className="navbar-brand fs-1 fst-italic" to="/"><DeliveryDiningOutlinedIcon style={{fontSize :"50"}}></DeliveryDiningOutlinedIcon> SST FOOD</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -31,6 +32,10 @@ export default function Navbar() {
         <Link className="nav-link active fs-5" aria-current="page" to="/myOrder">My Orders</Link>
       </li>:""
         }
+         
+         <li className="nav-item">
+        <Link className="nav-link active fs-5" aria-current="page" to="/about">About Us</Link>
+      </li>
       </ul>
       {(!localStorage.getItem("authToken"))?
       <div className='d-flex'>

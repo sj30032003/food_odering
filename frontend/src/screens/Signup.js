@@ -6,7 +6,7 @@ const [credentials,setcredentials]=useState({name:"",email:"",geolocation:""})
 let navigate= useNavigate();
 const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/createuser", {
+    const response = await fetch("https://food-ordering-88am.onrender.com/api/createuser", {
       // credentials: 'include',
       // Origin:"http://localhost:3000/login",
       method: 'POST',
@@ -28,22 +28,7 @@ const handleSubmit = async (e) => {
       alert("Enter Valid Credentials")
     }
   }
-//    const handleSubmit =async(e)=>{
-//      e.preventDefault();
-//      const response = await fetch("http://localhost:5000/api/createuser",{
-//         method:'POST',
-//         header:{
-//             'Content Type':'application/json'
-//         },
-//         body:JSON.stringify({name:credentials.name,email:credentials.email,password:credentials.password,location:credentials.geolocation
-//         })
-//      })
-//      const json = await response.json();
-//      console.log(json);
-//      if(!json.success){
-//         alert('Enter valid Credentials')
-//      }
-//    }
+
    const onChange=(event)=>{
     setcredentials({...credentials,[event.target.name]:event.target.value})
    }
