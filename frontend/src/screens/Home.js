@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Card from  '../components/Card';
 import Carousel from '../components/Carousel';
-
+import Loader from  '../components/Loader'
 export default function Home() {
     const [search,setSearch]= useState('');
     const [foodCat,setFoodCat]=useState([]);
@@ -28,6 +28,8 @@ export default function Home() {
     useEffect(()=>{
         loadData();
     },[])
+
+    if (foodItems.length===0) return <Loader />;
   return (
     <div>
     <Navbar> </Navbar>

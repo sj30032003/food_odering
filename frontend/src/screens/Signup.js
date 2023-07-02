@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import Navbar from '../components/Navbar';
 import {Link,useNavigate} from 'react-router-dom'
+import Loader from '../components/Loader';
 export default function Signup() {
 const [credentials,setcredentials]=useState({name:"",email:"",geolocation:""})
 let navigate= useNavigate();
@@ -17,7 +18,9 @@ const handleSubmit = async (e) => {
 
     });
     const json = await response.json()
-    console.log(json);
+    if(!json){
+      <Loader />
+    }
     if (json.sucess) {
         navigate('/login');
       //save the auth toke to local storage and redirect

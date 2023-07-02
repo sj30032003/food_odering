@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import {Link,useNavigate} from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Loader from '../components/Loader'
 export default function Login() {
     const [credentials,setcredentials]=useState({email:"",password:""})
     let navigate= useNavigate();
@@ -19,7 +20,9 @@ const handleSubmit = async (e) => {
 
     });
     const json = await response.json();
-    console.log(json);
+    if(!json){
+      < Loader/>
+    }
     if (json.success) {
       localStorage.setItem("userEmail",credentials.email);
       localStorage.setItem("authToken",json.authToken);

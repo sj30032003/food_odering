@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import {useNavigate} from  'react-router-dom';
-
+import Loader from '../components/Loader';
 export default function MyOrder() {
 let navigate= useNavigate();
 if(!localStorage.getItem("authToken")){
@@ -39,7 +39,9 @@ if(!localStorage.getItem("authToken")){
     useEffect(() => {
         fetchMyOrder()
     }, [])
-
+   if(orderData.size===0){
+    <Loader />
+   }
     return (
         <div className='bg-white'>
             <div>
