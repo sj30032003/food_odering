@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react'
 
-import Card from  '../components/Card';
+import Card from  './Card';
 
-import Loader from '../components/Loader'
+import Loader from './Loader'
 
 export default function Items() {
     const [search,setSearch]= useState('');
@@ -28,7 +28,7 @@ export default function Items() {
     useEffect(()=>{
         loadData();
     },[])
-    if (foodItems.length===0) return <Loader />;
+    if (foodItems&&foodItems.length===0) return <Loader />;
   return (
     <div>
 
