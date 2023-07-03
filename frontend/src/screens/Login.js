@@ -2,12 +2,13 @@ import React,{useState} from 'react';
 import {Link,useNavigate} from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Loader from '../components/Loader'
+import Loader from '../components/Loader';
 export default function Login() {
     const [credentials,setcredentials]=useState({email:"",password:""})
+    const [loading,setloading]= useState(false);
     let navigate= useNavigate();
 const handleSubmit = async (e) => {
-  
+    setloading(true);
     e.preventDefault();
     const response = await fetch("https://food-ordering-88am.onrender.com/api/loginuser", {
       // credentials: 'include',
@@ -19,10 +20,9 @@ const handleSubmit = async (e) => {
       body: JSON.stringify({  email: credentials.email, password: credentials.password})
 
     });
+    setloading(false);
     const json = await response.json();
-    if(!json){
-      < Loader/>
-    }
+
     if (json.success) {
       localStorage.setItem("userEmail",credentials.email);
       localStorage.setItem("authToken",json.authToken);
@@ -40,7 +40,8 @@ const handleSubmit = async (e) => {
       <div>
         <Navbar />
       </div>
-      <div className='container'>
+
+      {loading?<Loader />:<div className='container'>
         <form className='w-50 m-auto mt-5 border bg-dark border-success rounded' onSubmit={handleSubmit}>
           <div className="m-3 text-white">
             <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -55,8 +56,9 @@ const handleSubmit = async (e) => {
           <Link to="/createuser" className="m-3 mx-1 btn btn-danger">New User</Link>
         </form>
 
-      </div>
-      
+      </div>}
+
+
     </div>
   )
 }

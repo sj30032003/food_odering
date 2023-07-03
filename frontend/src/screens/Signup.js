@@ -1,11 +1,13 @@
 import React,{useState} from 'react'
 import Navbar from '../components/Navbar';
 import {Link,useNavigate} from 'react-router-dom'
-import Loader from '../components/Loader';
+import Loader from '../components/Loader.js'
 export default function Signup() {
 const [credentials,setcredentials]=useState({name:"",email:"",geolocation:""})
+const [loading ,setloading]= useState(false);
 let navigate= useNavigate();
 const handleSubmit = async (e) => {
+  setloading(true)
     e.preventDefault();
     const response = await fetch("https://food-ordering-88am.onrender.com/api/createuser", {
       // credentials: 'include',
@@ -18,9 +20,7 @@ const handleSubmit = async (e) => {
 
     });
     const json = await response.json()
-    if(!json){
-      <Loader />
-    }
+    setloading(false)
     if (json.sucess) {
         navigate('/login');
       //save the auth toke to local storage and redirect
@@ -31,7 +31,22 @@ const handleSubmit = async (e) => {
       alert("Enter Valid Credentials")
     }
   }
-
+//    const handleSubmit =async(e)=>{
+//      e.preventDefault();
+//      const response = await fetch("http://localhost:5000/api/createuser",{
+//         method:'POST',
+//         header:{
+//             'Content Type':'application/json'
+//         },
+//         body:JSON.stringify({name:credentials.name,email:credentials.email,password:credentials.password,location:credentials.geolocation
+//         })
+//      })
+//      const json = await response.json();
+//      console.log(json);
+//      if(!json.success){
+//         alert('Enter valid Credentials')
+//      }
+//    }
    const onChange=(event)=>{
     setcredentials({...credentials,[event.target.name]:event.target.value})
    }
@@ -40,8 +55,7 @@ const handleSubmit = async (e) => {
     <div>
     <Navbar />
     </div>
-
-      <div className='container' >
+    {loading?<Loader />:  <div className='container' >
         <form className='w-50 m-auto mt-5 border bg-dark border-success rounded' onSubmit={handleSubmit}>
           <div className="m-3">
             <label htmlFor="name" className="form-label text-white">Name</label>
@@ -62,7 +76,8 @@ const handleSubmit = async (e) => {
           <button type="submit" className="m-3 btn btn-success">Submit</button>
           <Link to="/login" className="m-3 mx-1 btn btn-danger">Already a user</Link>
         </form>
-      </div>
+      </div>}
+
     </div>
   )
 }
